@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1554785709 source:/home/cross/Documents/C++/2D SFML Game/main.cpp
+	<SFML/Graphics.hpp>
+
