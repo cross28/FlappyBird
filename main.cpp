@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <vector>
 #include "Bird.h"
 #include "Platform.h"
 
@@ -17,11 +18,19 @@ int main(){
     sf::Texture birdTexture;
     birdTexture.loadFromFile("images/redbird-upflap.png");
 
+    std::vector<Platform> tubes;
+    tubes.push_back(Platform(nullptr, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(500.0f, 200.0f)));
+    tubes.push_back(Platform(nullptr, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(500.0f, 0.0f)));
+    tubes.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
+
     Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.4f, 20.0f, 20.0f);
 
     while (window.isOpen()){
 
         deltaTime = clock.restart().asSeconds();
+        if (deltaTime > 1.0f / 60.0f)
+            deltaTime = 1.0f/ 60.0f;
+
         sf::Event evnt;
 
         while(window.pollEvent(evnt)){
@@ -40,10 +49,21 @@ int main(){
 
 
         bird.update(deltaTime);
+
+        sf::Vector2f direction;
+        Collider bgc = bird.getCollider();
+        for (Platform& tube : tubes) {
+            if (tube.getCollider().checkCollision(bgc, direction, false))
+                bird.onCollision(direction);
+        }
+
         view.setCenter(bird.getPosition());
-        window.clear(sf::Color::Black);
+
+        window.clear(sf::Color::Red);
         window.setView(view);
         bird.draw(window);
+        for (Platform& tube : tubes)
+            tube.draw(window);
         window.display();
     }
 
