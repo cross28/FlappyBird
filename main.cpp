@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <vector>
 #include "Bird.h"
+#include "Platform.h"
 
 static const float VIEW_HEIGHT = 1000.0f;
 
@@ -15,9 +15,9 @@ int main(){
     sf::Clock clock;
 
     sf::Texture birdTexture;
-    birdTexture.loadFromFile("/images/redbird-upflap.png");
+    birdTexture.loadFromFile("images/redbird-upflap.png");
 
-    Bird bird(&birdTexture, sf::Vector2u(0, 0), 0.4f, 20.0f, 20.0f);
+    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.4f, 20.0f, 20.0f);
 
     while (window.isOpen()){
 
@@ -38,13 +38,13 @@ int main(){
             }
         }
 
+
         bird.update(deltaTime);
         view.setCenter(bird.getPosition());
         window.clear(sf::Color::Black);
         window.setView(view);
         bird.draw(window);
         window.display();
-
     }
 
     return 0;
