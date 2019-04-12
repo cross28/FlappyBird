@@ -1,5 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <vector>
+#include "Bird.h"
 
 static const float VIEW_HEIGHT = 1000.0f;
 
@@ -7,12 +9,15 @@ void ResizeView(const sf::RenderWindow&, sf::View&);
 
 int main(){
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "Practice", sf::Style::Titlebar | sf::Style::Close | sf::Style::Default);
+    sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT)); //Camera follows bird
 
-    //Camera follows our player
-    sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
     float deltaTime = 0.0f;
     sf::Clock clock;
 
+    sf::Texture birdTexture;
+    birdTexture.loadFromFile("/images/redbird-upflap.png");
+
+    Bird bird(&birdTexture, sf::Vector2u(0, 0), 0.4f, 20.0f, 20.0f);
 
     while (window.isOpen()){
 
@@ -33,9 +38,11 @@ int main(){
             }
         }
 
-
-        window.clear(sf::Color::Red);
+        bird.update(deltaTime);
+        view.setCenter(bird.getPosition());
+        window.clear(sf::Color::Black);
         window.setView(view);
+        bird.draw(window);
         window.display();
 
     }
