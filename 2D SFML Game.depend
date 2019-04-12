@@ -1,4 +1,11 @@
 # depslib dependency file v1.0
-1554785709 source:/home/cross/Documents/C++/2D SFML Game/main.cpp
+1555042946 source:/home/cross/Documents/C++/2D SFML Game/main.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1555045653 source:/home/cross/Documents/C++/2D SFML Game/src/Animation.cpp
+	"Animation.h"
+
+1555045064 /home/cross/Documents/C++/2D SFML Game/include/Animation.h
 	<SFML/Graphics.hpp>
 
