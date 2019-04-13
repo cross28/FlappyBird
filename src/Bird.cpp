@@ -10,9 +10,9 @@ Bird::Bird(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, floa
     this->jumpHeight = jumpHeight;
     row = 0;
 
-    body.setSize(sf::Vector2f(100.0f, 100.0f));
+    body.setSize(sf::Vector2f(50.0f, 50.0f));
     body.setOrigin(body.getSize() / 2.0f);
-    body.setPosition(100.0f, 100.0f);
+    body.setPosition(200.0f, 200.0f);
     body.setTexture(texture);
 }
 
@@ -23,14 +23,17 @@ Bird::~Bird()
 
 void Bird::update(float deltaTime)
 {
-    velocity.y = 0.0f;
-    velocity.x = 20.0f;
+    velocity.y *= 0.75f;
+    velocity.x = 50.0f;
 
     //Jump
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump) {
+        //canJump = false;
         velocity.y = -sqrtf(2.0f * GRAVITY * jumpHeight);
+    }
 
-    velocity.y += GRAVITY * jumpHeight;
+     //Multiplier is arbitrary
+    velocity.y += 90 * GRAVITY * deltaTime;
 
     animation.update(row, deltaTime);
     body.setTextureRect(animation.textureRect);
@@ -53,6 +56,7 @@ void Bird::onCollision(sf::Vector2f direction)
     if (direction.y > 0.0f) {
         velocity.x = 0.0f;
         isDead = true;
+        //canJump = true;
     }
     //Collision on the top
     if (direction.y < 0.0f) {

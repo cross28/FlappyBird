@@ -13,7 +13,7 @@ private:
     unsigned int row;
     float speed;
     sf::Vector2f velocity;
-    bool canJump;
+    bool canJump = true;
     bool isDead = false;
     float jumpHeight;
 
@@ -23,7 +23,6 @@ public:
 
     void update(float deltaTime);
     void draw(sf::RenderWindow& window);
-
     bool getBirdState() { return isDead; }
 
     sf::Vector2f getPosition() { return body.getPosition(); }
