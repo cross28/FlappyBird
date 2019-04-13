@@ -9,7 +9,7 @@ static const float VIEW_HEIGHT = 1000.0f;
 void ResizeView(const sf::RenderWindow&, sf::View&);
 
 int main(){
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Practice", sf::Style::Titlebar | sf::Style::Close | sf::Style::Default);
+    sf::RenderWindow window(sf::VideoMode(512, 512), "Practice", sf::Style::Titlebar | sf::Style::Close | sf::Style::Default);
     sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT)); //Camera follows bird
 
     float deltaTime = 0.0f;
@@ -19,11 +19,11 @@ int main(){
     birdTexture.loadFromFile("images/redbird-upflap.png");
 
     std::vector<Platform> tubes;
-    tubes.push_back(Platform(nullptr, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(500.0f, 200.0f)));
-    tubes.push_back(Platform(nullptr, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(500.0f, 0.0f)));
+    tubes.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
+    tubes.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
     tubes.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
 
-    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.4f, 20.0f, 20.0f);
+    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 100.0f, 200.0f);
 
     while (window.isOpen()){
 
@@ -47,13 +47,12 @@ int main(){
             }
         }
 
-
         bird.update(deltaTime);
 
         sf::Vector2f direction;
         Collider bgc = bird.getCollider();
         for (Platform& tube : tubes) {
-            if (tube.getCollider().checkCollision(bgc, direction, false))
+            if (tube.getCollider().checkCollision(bgc, direction, 0.0f))
                 bird.onCollision(direction);
         }
 
