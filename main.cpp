@@ -21,7 +21,7 @@ int main(){
     std::vector<Platform> tubes;
     tubes.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
     tubes.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
-    tubes.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
+    tubes.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(900.0f, 900.0f)));
 
     Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 100.0f, 200.0f);
 
@@ -52,7 +52,7 @@ int main(){
         sf::Vector2f direction;
         Collider bgc = bird.getCollider();
         for (Platform& tube : tubes) {
-            if (tube.getCollider().checkCollision(bgc, direction, 0.0f))
+            if (tube.getCollider().checkCollision(bgc, direction, 1.0f))
                 bird.onCollision(direction);
         }
 

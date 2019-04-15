@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1555135173 source:/home/cross/Documents/C++/2D SFML Game/main.cpp
+1555311127 source:/home/cross/Documents/C++/2D SFML Game/main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -12,7 +12,7 @@
 1555045064 /home/cross/Documents/C++/2D SFML Game/include/Animation.h
 	<SFML/Graphics.hpp>
 
-1555135225 source:/home/cross/Documents/C++/2D SFML Game/src/Bird.cpp
+1555135272 source:/home/cross/Documents/C++/2D SFML Game/src/Bird.cpp
 	"Bird.h"
 	"math.h"
 

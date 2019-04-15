@@ -28,7 +28,7 @@ void Bird::update(float deltaTime)
 
     //Jump
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump) {
-        //canJump = false;
+        canJump = false;
         velocity.y = -sqrtf(2.0f * GRAVITY * jumpHeight);
     }
 
@@ -47,20 +47,17 @@ void Bird::draw(sf::RenderWindow& window)
 
 void Bird::onCollision(sf::Vector2f direction)
 {
+    isDead = true;
+
     //Collision on the right
-    if (direction.x > 0.0f) {
+    if (direction.x > 0.0f)
         velocity.x = 0.0f;
-        isDead = true;
-    }
+
     //Collision on the bottom
-    if (direction.y > 0.0f) {
+    if (direction.y > 0.0f)
         velocity.x = 0.0f;
-        isDead = true;
-        //canJump = true;
-    }
+
     //Collision on the top
-    if (direction.y < 0.0f) {
+    if (direction.y < 0.0f)
         velocity.x = 0.0f;
-        isDead = true;
-    }
 }
