@@ -1,12 +1,13 @@
 #include "Bird.h"
 #include "math.h"
+#include <iostream>
 
 static const float GRAVITY = 981.0f;
 
-Bird::Bird(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight) :
+Bird::Bird(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float velX, float jumpHeight) :
     animation(texture, imageCount, switchTime)
 {
-    this->speed = speed;
+    this->velocity.x = velX;
     this->jumpHeight = jumpHeight;
     row = 0;
 
@@ -23,23 +24,20 @@ Bird::~Bird()
 
 void Bird::update(float deltaTime)
 {
-    velocity.y *= 0.75f;
-    velocity.x = 50.0f;
+    velocity.y *= 0.74f;
 
     //Jump
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump) {
-        canJump = false;
         velocity.y = -sqrtf(2.0f * GRAVITY * jumpHeight);
     }
 
      //Multiplier is arbitrary
-    velocity.y += 90 * GRAVITY * deltaTime;
+    velocity.y += 250 * GRAVITY * deltaTime;
 
     animation.update(row, deltaTime);
     body.setTextureRect(animation.textureRect);
     body.move(velocity * deltaTime);
 }
-
 void Bird::draw(sf::RenderWindow& window)
 {
     window.draw(body);
@@ -50,14 +48,20 @@ void Bird::onCollision(sf::Vector2f direction)
     isDead = true;
 
     //Collision on the right
-    if (direction.x > 0.0f)
+    if (direction.x > 0.0f) {
         velocity.x = 0.0f;
+        velocity.y = 0.0f;
+    }
 
     //Collision on the bottom
-    if (direction.y > 0.0f)
-        velocity.x = 0.0f;
+    if (direction.y > 0.0f) {
+        //velocity.x = 0.0f;
+        //velocity.y = 0.0f;
+    }
 
     //Collision on the top
-    if (direction.y < 0.0f)
+    if (direction.y < 0.0f) {
         velocity.x = 0.0f;
+        velocity.y = 0.0f;
+    }
 }
