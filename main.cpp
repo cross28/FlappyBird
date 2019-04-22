@@ -17,19 +17,20 @@ int main(){
 
     sf::Texture birdTexture;
     birdTexture.loadFromFile("images/redbird-upflap.png");
+    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 100.0f, 200.0f);
 
     std::vector<Platform> tubes;
+    sf::Texture longTubeTop;
+    longTubeTop.loadFromFile("images/LongTubeTop.png");
     tubes.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
     tubes.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
-    tubes.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(900.0f, 900.0f)));
-
-    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 100.0f, 200.0f);
+    tubes.push_back(Platform(&longTubeTop, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(500.0f,800.0f)));
 
     while (window.isOpen()){
 
         deltaTime = clock.restart().asSeconds();
-        if (deltaTime > 1.0f / 60.0f)
-            deltaTime = 1.0f/ 60.0f;
+        if (deltaTime > 1.0f / 30.0f)
+            deltaTime = 1.0f/ 30.0f;
 
         sf::Event evnt;
 
@@ -44,21 +45,32 @@ int main(){
             case sf::Event::Resized:
                 ResizeView(window, view);
                 break;
+
+            /*
+            case sf::Event::KeyPressed:
+                if (evnt.key.code == sf::Keyboard::Space)
+                    bird.setJump(false);
+                break;
+
+            case sf::Event::KeyReleased:
+                bird.setJump(true);
+                break;
+            */
             }
         }
 
-        bird.update(deltaTime);
 
+        bird.update(deltaTime);
         sf::Vector2f direction;
         Collider bgc = bird.getCollider();
         for (Platform& tube : tubes) {
-            if (tube.getCollider().checkCollision(bgc, direction, 1.0f))
+            if (tube.getCollider().checkCollision(bgc, direction, 1.0f)) {
                 bird.onCollision(direction);
+                bird.setVelocity(0.0f, 0.0f);
+            }
         }
-
         view.setCenter(bird.getPosition());
-
-        window.clear(sf::Color::Red);
+        window.clear();
         window.setView(view);
         bird.draw(window);
         for (Platform& tube : tubes)
