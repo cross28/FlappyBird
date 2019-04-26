@@ -12,7 +12,7 @@
 1555045064 /home/cross/Documents/C++/2D SFML Game/include/Animation.h
 	<SFML/Graphics.hpp>
 
-1555741227 source:/home/cross/Documents/C++/2D SFML Game/src/Bird.cpp
+1555910318 source:/home/cross/Documents/C++/2D SFML Game/src/Bird.cpp
 	"Bird.h"
 	"math.h"
 	<iostream>

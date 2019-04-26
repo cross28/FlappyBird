@@ -44,11 +44,13 @@
 		<Unit filename="cb.bmp" />
 		<Unit filename="include/Animation.h" />
 		<Unit filename="include/Bird.h" />
+		<Unit filename="include/Button.h" />
 		<Unit filename="include/Collider.h" />
 		<Unit filename="include/Platform.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Animation.cpp" />
 		<Unit filename="src/Bird.cpp" />
+		<Unit filename="src/Button.cpp" />
 		<Unit filename="src/Collider.cpp" />
 		<Unit filename="src/Platform.cpp" />
 		<Extensions>
