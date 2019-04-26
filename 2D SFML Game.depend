@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1555909804 source:/home/cross/Documents/C++/2D SFML Game/main.cpp
+1556256505 source:/home/cross/Documents/C++/2D SFML Game/main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -12,12 +12,12 @@
 1555045064 /home/cross/Documents/C++/2D SFML Game/include/Animation.h
 	<SFML/Graphics.hpp>
 
-1555910318 source:/home/cross/Documents/C++/2D SFML Game/src/Bird.cpp
+1556256468 source:/home/cross/Documents/C++/2D SFML Game/src/Bird.cpp
 	"Bird.h"
 	"math.h"
 	<iostream>
 
-1555909804 /home/cross/Documents/C++/2D SFML Game/include/Bird.h
+1556256481 /home/cross/Documents/C++/2D SFML Game/include/Bird.h
 	<SFML/Graphics.hpp>
 	"Animation.h"
 	"Collider.h"
@@ -34,4 +34,11 @@
 1555106106 /home/cross/Documents/C++/2D SFML Game/include/Platform.h
 	<SFML/Graphics.hpp>
 	"Collider.h"
+
+1556254702 source:/home/cross/Documents/C++/2D SFML Game/src/Button.cpp
+	"Button.h"
+
+1556254672 /home/cross/Documents/C++/2D SFML Game/include/Button.h
+	<SFML/Graphics.hpp>
+	<string>
 

@@ -13,7 +13,7 @@ private:
     unsigned int row;
     float speed;
     sf::Vector2f velocity;
-    bool canJump;
+    bool canJump=true;
     bool isDead = false;
     float jumpHeight;
 

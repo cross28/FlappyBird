@@ -27,7 +27,7 @@ void Bird::update(float deltaTime)
     velocity.y *= 0.74f;
 
     //Jump
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump==true) {
         velocity.y = -sqrtf(2.0f * GRAVITY * jumpHeight);
     }
 

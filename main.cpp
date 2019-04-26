@@ -60,21 +60,30 @@ int main(){
         }
 
 
-        bird.update(deltaTime);
-        sf::Vector2f direction;
         Collider bgc = bird.getCollider();
         for (Platform& tube : tubes) {
+        sf::Vector2f direction;
             if (tube.getCollider().checkCollision(bgc, direction, 1.0f)) {
                 bird.onCollision(direction);
                 bird.setVelocity(0.0f, 0.0f);
+                bird.setJump(false);
             }
         }
+
+        //Set camera view
         view.setCenter(bird.getPosition());
-        window.clear();
         window.setView(view);
+
+        window.clear();
+
+        //Draw the sprites
+        bird.update(deltaTime);
         bird.draw(window);
+
         for (Platform& tube : tubes)
             tube.draw(window);
+
+
         window.display();
     }
 
