@@ -16,6 +16,9 @@ private:
     bool canJump=true;
     bool isDead = false;
     float jumpHeight;
+    int score = 0;
+    int deaths = 0;
+    float sdRatio = getRatio();
 
 public:
     Bird(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight);
@@ -27,6 +30,9 @@ public:
     bool getBirdState() { return isDead; }
     void setJump(bool b) { canJump = b; }
     void setVelocity(float dx, float dy) { velocity.x = dx; velocity.y = dy; }
+    void incScore() { score++; }
+    void incDeath() { deaths++; }
+    float getRatio();
 
     sf::Vector2f getPosition() { return body.getPosition(); }
     Collider getCollider() { return Collider(body); }

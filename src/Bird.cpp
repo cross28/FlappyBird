@@ -32,7 +32,9 @@ void Bird::update(float deltaTime)
     }
 
      //Multiplier is arbitrary
-    velocity.y += 250 * GRAVITY * deltaTime;
+    if (isDead==false) {
+        velocity.y += 250 * GRAVITY * deltaTime;
+    }
 
     animation.update(row, deltaTime);
     body.setTextureRect(animation.textureRect);
@@ -47,21 +49,14 @@ void Bird::onCollision(sf::Vector2f direction)
 {
     isDead = true;
 
-    //Collision on the right
-    if (direction.x > 0.0f) {
-        velocity.x = 0.0f;
-        velocity.y = 0.0f;
+    //Collision on the right, bottom, top
+    if (direction.x > 0.0f || direction.y > 0.0f || direction.y < 0.0f) {
+        setVelocity(0.0f, 0.0f);
+        setJump(false);
     }
+}
 
-    //Collision on the bottom
-    if (direction.y > 0.0f) {
-        //velocity.x = 0.0f;
-        //velocity.y = 0.0f;
-    }
+float Bird::getRatio()
+{
 
-    //Collision on the top
-    if (direction.y < 0.0f) {
-        velocity.x = 0.0f;
-        velocity.y = 0.0f;
-    }
 }
