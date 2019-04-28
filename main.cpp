@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "Bird.h"
+#include "Button.h"
 #include "Platform.h"
 
 static const float VIEW_HEIGHT = 1000.0f;
@@ -17,23 +18,21 @@ int main(){
 
     sf::Texture birdTexture;
     birdTexture.loadFromFile("images/redbird-upflap.png");
-    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 100.0f, 200.0f);
+    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 200.0f, 200.0f);
 
     std::vector<Platform> tubes;
-    sf::Texture longTubeTop;
-    longTubeTop.loadFromFile("images/LongTubeTop.png");
-    tubes.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
-    tubes.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
-    tubes.push_back(Platform(&longTubeTop, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(500.0f,800.0f)));
+    sf::Texture tubeTop;
+    tubeTop.loadFromFile("images/tube.png");
+    tubes.push_back(Platform(&tubeTop, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
+    tubes.push_back(Platform(&tubeTop, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(500.0f,800.0f)));
 
     while (window.isOpen()){
-
+        const float FPS = 1 / 30.0f;
         deltaTime = clock.restart().asSeconds();
-        if (deltaTime > 1.0f / 30.0f)
-            deltaTime = 1.0f/ 30.0f;
+        if (deltaTime > FPS)
+            deltaTime = FPS;
 
         sf::Event evnt;
-
         while(window.pollEvent(evnt)){
             switch(evnt.type)
             {
@@ -45,19 +44,9 @@ int main(){
             case sf::Event::Resized:
                 ResizeView(window, view);
                 break;
-
-            /*
-            case sf::Event::KeyPressed:
-                if (evnt.key.code == sf::Keyboard::Space)
-                    bird.setJump(false);
-                break;
-
-            case sf::Event::KeyReleased:
-                bird.setJump(true);
-                break;
-            */
             }
         }
+
 
 
         Collider bgc = bird.getCollider();
@@ -65,8 +54,6 @@ int main(){
         sf::Vector2f direction;
             if (tube.getCollider().checkCollision(bgc, direction, 1.0f)) {
                 bird.onCollision(direction);
-                bird.setVelocity(0.0f, 0.0f);
-                bird.setJump(false);
             }
         }
 
@@ -82,7 +69,6 @@ int main(){
 
         for (Platform& tube : tubes)
             tube.draw(window);
-
 
         window.display();
     }
