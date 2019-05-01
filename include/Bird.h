@@ -2,6 +2,8 @@
 #define BIRD_H
 
 #include <SFML/Graphics.hpp>
+#include <fstream>
+#include <iostream>
 #include "Animation.h"
 #include "Collider.h"
 
@@ -16,8 +18,8 @@ private:
     bool canJump=true;
     bool isDead = false;
     float jumpHeight;
-    int score = 0;
-    int deaths = 0;
+    int lifeTimeScore;
+    int deaths;
     float sdRatio = getRatio();
 
 public:
@@ -30,8 +32,8 @@ public:
     bool getBirdState() { return isDead; }
     void setJump(bool b) { canJump = b; }
     void setVelocity(float dx, float dy) { velocity.x = dx; velocity.y = dy; }
-    void incScore() { score++; }
-    void incDeath() { deaths++; }
+    void incScore();
+    void incDeath();
     float getRatio();
 
     sf::Vector2f getPosition() { return body.getPosition(); }

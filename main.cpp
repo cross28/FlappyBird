@@ -23,11 +23,11 @@ int main(){
     std::vector<Platform> tubes;
     sf::Texture tubeTop;
     tubeTop.loadFromFile("images/tube.png");
-    tubes.push_back(Platform(&tubeTop, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
-    tubes.push_back(Platform(&tubeTop, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(500.0f,800.0f)));
+    tubes.push_back(Platform(&tubeTop, sf::Vector2f(100.0f, -500.0f), sf::Vector2f(500.0f, 0.0f)));
+    tubes.push_back(Platform(&tubeTop, sf::Vector2f(100.0f, 500.0f), sf::Vector2f(500.0f,800.0f)));
 
     while (window.isOpen()){
-        const float FPS = 1 / 30.0f;
+        const float FPS = 1 / 60.0f;
         deltaTime = clock.restart().asSeconds();
         if (deltaTime > FPS)
             deltaTime = FPS;
@@ -46,7 +46,6 @@ int main(){
                 break;
             }
         }
-
 
 
         Collider bgc = bird.getCollider();
@@ -72,7 +71,8 @@ int main(){
 
         window.display();
     }
-
+    bird.incScore();
+    bird.incDeath();
     return 0;
 }
 
