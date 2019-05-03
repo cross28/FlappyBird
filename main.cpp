@@ -18,13 +18,13 @@ int main(){
 
     sf::Texture birdTexture;
     birdTexture.loadFromFile("images/redbird-upflap.png");
-    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 200.0f, 200.0f);
+    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 100.0f, 200.0f);
 
     std::vector<Platform> tubes;
     sf::Texture tubeTop;
     tubeTop.loadFromFile("images/tube.png");
-    tubes.push_back(Platform(&tubeTop, sf::Vector2f(100.0f, -500.0f), sf::Vector2f(500.0f, 0.0f)));
-    tubes.push_back(Platform(&tubeTop, sf::Vector2f(100.0f, 500.0f), sf::Vector2f(500.0f,800.0f)));
+    tubes.push_back(Platform(&tubeTop, sf::Vector2f(100.0f, 500.0f), sf::Vector2f(500.0f, 0.0f)));
+    tubes.push_back(Platform(&tubeTop, sf::Vector2f(1000.0f, 500.0f), sf::Vector2f(500.0f,800.0f)));
 
     while (window.isOpen()){
         const float FPS = 1 / 60.0f;
@@ -48,9 +48,9 @@ int main(){
         }
 
 
-        Collider bgc = bird.getCollider();
         for (Platform& tube : tubes) {
         sf::Vector2f direction;
+        Collider bgc = bird.getCollider();
             if (tube.getCollider().checkCollision(bgc, direction, 1.0f)) {
                 bird.onCollision(direction);
             }
@@ -71,8 +71,7 @@ int main(){
 
         window.display();
     }
-    bird.incScore();
-    bird.incDeath();
+
     return 0;
 }
 

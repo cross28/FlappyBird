@@ -28,15 +28,13 @@ Bird::~Bird()
 
 void Bird::update(float deltaTime)
 {
-    velocity.y *= 0.74f;
-
     //Jump
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump==true) {
         velocity.y = -sqrtf(2.0f * GRAVITY * jumpHeight);
     }
 
     if (isDead==false) {
-        velocity.y += 250 * GRAVITY * deltaTime;
+        velocity.y += GRAVITY * deltaTime;
     }
 
     animation.update(row, deltaTime);

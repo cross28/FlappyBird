@@ -13,10 +13,11 @@ private:
     sf::RectangleShape body;
     Animation animation;
     unsigned int row;
-    float speed;
+
     sf::Vector2f velocity;
-    bool canJump=true;
     bool isDead = false;
+    bool canJump=true;
+
     float jumpHeight;
     int lifeTimeScore;
     int deaths;
