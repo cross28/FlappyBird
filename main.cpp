@@ -18,7 +18,7 @@ int main(){
 
     sf::Texture birdTexture;
     birdTexture.loadFromFile("images/redbird-upflap.png");
-    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 100.0f, 200.0f);
+    Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 100.0f, 50.0f);
 
     std::vector<Platform> tubes;
     sf::Texture tubeTop;
@@ -36,6 +36,10 @@ int main(){
         while(window.pollEvent(evnt)){
             switch(evnt.type)
             {
+            case sf::Event::KeyPressed:
+                if (evnt.key.code == sf::Keyboard::Escape)
+                    window.close();
+                break;
             case sf::Event::Closed:
                 window.close();
                 break;
