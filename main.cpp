@@ -39,7 +39,15 @@ int main(){
             case sf::Event::KeyPressed:
                 if (evnt.key.code == sf::Keyboard::Escape)
                     window.close();
+                if (evnt.key.code == sf::Keyboard::Space)
+                    bird.setJump(false);
                 break;
+
+            case sf::Event::KeyReleased:
+                if (evnt.key.code == sf::Keyboard::Space)
+                    bird.setJump(true);
+                break;
+
             case sf::Event::Closed:
                 window.close();
                 break;
