@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <cstdlib>
 #include <vector>
 #include "Bird.h"
-#include "Platform.h"
+#include "Tube.h"
 
 static const float VIEW_HEIGHT = 1000.0f;
 
@@ -19,14 +20,14 @@ int main(){
     birdTexture.loadFromFile("images/redbird-upflap.png");
     Bird bird(&birdTexture, sf::Vector2u(1, 1), 0.3f, 100.0f, 50.0f);
 
-    std::vector<Platform> tubes;
+    std::vector<Tube> tubes;
     sf::Texture tubeTop;
     tubeTop.loadFromFile("images/tube.png");
-    tubes.push_back(Platform(&tubeTop, sf::Vector2f(100.0f, 500.0f), sf::Vector2f(500.0f, 0.0f)));
-    tubes.push_back(Platform(&tubeTop, sf::Vector2f(1000.0f, 500.0f), sf::Vector2f(500.0f,800.0f)));
+    tubes.push_back(Tube(&tubeTop, sf::Vector2f(100.0f, 500.0f), sf::Vector2f(500.0f, 0.0f)));
+    tubes.push_back(Tube(&tubeTop, sf::Vector2f(1000.0f, 500.0f), sf::Vector2f(500.0f,800.0f)));
 
-    sf::Font font;
-    font.loadFromFile("Font/Chivo-Black.ttf");
+    srand(time(NULL));
+    int randTubing;
 
     while (window.isOpen()){
         const float FPS = 1 / 60.0f;
@@ -61,12 +62,14 @@ int main(){
             }
         }
 
+        randTubing = rand()%3 + 1;
 
-        for (Platform& tube : tubes) {
+        for (Tube& tube : tubes) {
             sf::Vector2f direction;
             Collider bgc = bird.getCollider();
-            if (tube.getCollider().checkCollision(bgc, direction, 1.0f))
+            if (tube.getCollider().checkCollision(bgc, direction, 1.0f)) {
                 bird.onCollision(direction);
+            }
         }
 
         //Set camera view
@@ -79,7 +82,7 @@ int main(){
         bird.update(deltaTime);
         bird.draw(window);
 
-        for (Platform& tube : tubes)
+        for (Tube& tube : tubes)
             tube.draw(window);
 
         window.display();

@@ -29,7 +29,7 @@ Bird::~Bird()
 void Bird::update(float deltaTime)
 {
     //Jump
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump==true) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump==true && isDead==false) {
         velocity.y = -sqrtf(2.0f * GRAVITY * jumpHeight);
     }
 
