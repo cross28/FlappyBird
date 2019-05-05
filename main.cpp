@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include "Bird.h"
-#include "Button.h"
 #include "Platform.h"
 
 static const float VIEW_HEIGHT = 1000.0f;
@@ -25,6 +24,9 @@ int main(){
     tubeTop.loadFromFile("images/tube.png");
     tubes.push_back(Platform(&tubeTop, sf::Vector2f(100.0f, 500.0f), sf::Vector2f(500.0f, 0.0f)));
     tubes.push_back(Platform(&tubeTop, sf::Vector2f(1000.0f, 500.0f), sf::Vector2f(500.0f,800.0f)));
+
+    sf::Font font;
+    font.loadFromFile("Font/Chivo-Black.ttf");
 
     while (window.isOpen()){
         const float FPS = 1 / 60.0f;
@@ -61,11 +63,10 @@ int main(){
 
 
         for (Platform& tube : tubes) {
-        sf::Vector2f direction;
-        Collider bgc = bird.getCollider();
-            if (tube.getCollider().checkCollision(bgc, direction, 1.0f)) {
+            sf::Vector2f direction;
+            Collider bgc = bird.getCollider();
+            if (tube.getCollider().checkCollision(bgc, direction, 1.0f))
                 bird.onCollision(direction);
-            }
         }
 
         //Set camera view
