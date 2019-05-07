@@ -45,12 +45,12 @@
 		<Unit filename="include/Animation.h" />
 		<Unit filename="include/Bird.h" />
 		<Unit filename="include/Collider.h" />
-		<Unit filename="include/Platform.h" />
+		<Unit filename="include/Tube.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Animation.cpp" />
 		<Unit filename="src/Bird.cpp" />
 		<Unit filename="src/Collider.cpp" />
-		<Unit filename="src/Platform.cpp" />
+		<Unit filename="src/Tube.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
