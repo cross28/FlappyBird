@@ -24,7 +24,7 @@ private:
     float sdRatio = getRatio();
 
 public:
-    Bird(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight);
+    Bird(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight, sf::Vector2f position);
     virtual ~Bird();
 
     void update(float deltaTime);

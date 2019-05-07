@@ -3,7 +3,7 @@
 
 static const float GRAVITY = 981.0f;
 
-Bird::Bird(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float velX, float jumpHeight) :
+Bird::Bird(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float velX, float jumpHeight, sf::Vector2f position) :
     animation(texture, imageCount, switchTime)
 {
     this->velocity.x = velX;
@@ -14,6 +14,7 @@ Bird::Bird(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, floa
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(200.0f, 200.0f);
     body.setTexture(texture);
+    body.setPosition(position);
 
     std::ifstream ifs("/home/cross/Documents/C++/2D SFML Game/stats/stat.txt");
     ifs >> lifeTimeScore;
@@ -49,7 +50,7 @@ void Bird::draw(sf::RenderWindow& window)
 void Bird::onCollision(sf::Vector2f direction)
 {
     isDead = true;
-
+    incDeath();
     //Collision on the right, bottom, top
     if (direction.x < 0.0f || direction.x > 0.0f || direction.y > 0.0f || direction.y < 0.0f) {
         setVelocity(0.0f, 0.0f);

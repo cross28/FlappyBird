@@ -15,6 +15,7 @@ public:
 
     void draw(sf::RenderWindow& window);
     Collider getCollider() { return Collider(body); }
+    sf::Vector2f getPosition();
 };
 
 #endif // TUBE_H

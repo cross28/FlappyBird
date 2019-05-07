@@ -17,3 +17,8 @@ void Tube::draw(sf::RenderWindow& window)
 {
     window.draw(body);
 }
+
+sf::Vector2f Tube::getPosition()
+{
+    return body.getPosition();
+}
