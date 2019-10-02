@@ -1,8 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
-#include "Bird.h"
-#include "Tube.h"
+#include "include/Bird.h"
+#include "include/Tube.h"
 
 static const float VIEW_HEIGHT = 1000.0f;
 
@@ -48,8 +48,9 @@ int main(){
             case sf::Event::KeyPressed:
                 if (evnt.key.code == sf::Keyboard::Escape)
                     window.close();
+                
                 if (evnt.key.code == sf::Keyboard::Space)
-                    bird.setJump(false);
+                    bird.setJump(false); 
                 break;
 
             case sf::Event::KeyReleased:
@@ -89,7 +90,7 @@ int main(){
         window.setView(view);
         bird.update(deltaTime);
         bird.draw(window);
-
+        
         window.display();
     }
 

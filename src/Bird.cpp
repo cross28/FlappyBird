@@ -1,4 +1,4 @@
-#include "Bird.h"
+#include "../include/Bird.h"
 #include "math.h"
 
 static const float GRAVITY = 981.0f;
