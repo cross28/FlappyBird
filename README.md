@@ -6,7 +6,7 @@ Remake of Flappy Bird in C++. I am using the SFML library to produce the game.
 
 This will cause the bird to jump
 
-###Installation
+### Installation
 
 For now, to play the remake you will need an IDE that has SFML included in its dependencies. I used Code Blocks.
 
